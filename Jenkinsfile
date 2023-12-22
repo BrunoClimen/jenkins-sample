@@ -8,7 +8,7 @@ node () {
  	 checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'git-login', url: 'https://github.com/BrunoClimen/jenkins-sample.git']]]) 
 	}
 	stage ('App-IC - Mdp') {
-		bat(echo 'toto')
+		cmd(echo 'toto')
 	}
 	stage ('App-IC - Build') {
  			// Maven build step

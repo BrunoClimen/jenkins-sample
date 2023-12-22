@@ -5,11 +5,11 @@ timestamps {
 node () {
 
 	stage ('App-IC - Checkout') {
- 	 checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'git-login', url: 'https://github.com/BrunoClimen/jenkins-sample.git']]]) 
+ 	 	checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'git-login', url: 'https://github.com/BrunoClimen/jenkins-sample.git']]]) 
 	}
 	stage ('App-IC - Build') {
- 			// Maven build step
-	withMaven(maven: 'maven') { 
+ 		// Maven build step
+		withMaven(maven: 'maven') { 
  			if(isUnix()) {
  				sh "mvn clean package " 
 			} else { 

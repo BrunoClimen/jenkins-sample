@@ -7,15 +7,6 @@ node () {
 	stage ('App-IC - Checkout') {
  	 checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'git-login', url: 'https://github.com/BrunoClimen/jenkins-sample.git']]]) 
 	}
-	stage('Quality check') {
-		withSonarQubeEnv('Sonar') {
-		bat "mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
-		-Dsonar.projectKey=jenkins-demo"
-		}
-	}
-	stage ('App-IC - Mdp') {
-		system.out.println("entre mdp")
-	}
 	stage ('App-IC - Build') {
  			// Maven build step
 	withMaven(maven: 'maven') { 
@@ -25,6 +16,12 @@ node () {
  				bat "mvn clean package " 
 			} 
  		} 
+	}
+	stage('Quality check') {
+		withSonarQubeEnv('Sonar') {
+		bat "mvn verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar
+		-Dsonar.projectKey=jenkins-demo"
+		}
 	}
 	stage ('App-IC - Post build actions') {
 /*

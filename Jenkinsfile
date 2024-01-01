@@ -29,7 +29,7 @@ It may not necessarily work/behave in the same way as post-build actions work.
 A logic review is suggested.
 */
 		// Mailer notification
-		step([$class: 'Mailer', notifyEveryUnstableBuild: true, recipients: 'bclimen@msn.com', sendToIndividuals: false])
+		step([$class: 'Mailer', notifyEveryUnstableBuild: true, recipients: '', sendToIndividuals: false])
  
 	}
 }
